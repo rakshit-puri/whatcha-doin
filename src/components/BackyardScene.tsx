@@ -18,8 +18,10 @@ export const BackyardScene = () => {
 	const isabellaText = "Whatcha doin'?";
 
 	useEffect(() => {
-		// 1. Fetch current message once
-		const fetchCurrentMessage = async () => {
+		let channel: ReturnType<typeof supabase.channel>;
+
+		const init = async () => {
+			// 1. Fetch current message once
 			const { data, error } = await supabase
 				.from("messages")
 				.select("text")
@@ -31,36 +33,38 @@ export const BackyardScene = () => {
 			} else if (data) {
 				setPhineasText(data.text);
 			}
+
+			// 2. Subscribe to realtime updates
+			channel = supabase
+				.channel("messages-updates")
+				.on(
+					"postgres_changes",
+					{
+						event: "UPDATE",
+						schema: "public",
+						table: "messages",
+						filter: "id=eq.00000000-0000-0000-0000-000000000001",
+					},
+					(payload) => {
+						console.log("Realtime update:", payload);
+						setPhineasText(payload.new.text ?? phineasText);
+
+						toast({
+							title: "Message updated!",
+							description: payload.new.text,
+						});
+					}
+				)
+				.subscribe((status) => {
+					console.log("Subscription status:", status);
+				});
 		};
 
-		fetchCurrentMessage();
-
-		// 2. Subscribe to realtime updates
-		const channel = supabase
-			.channel("messages-updates")
-			.on(
-				"postgres_changes",
-				{
-					event: "UPDATE",
-					schema: "public",
-					table: "messages",
-					filter: "id=eq.00000000-0000-0000-0000-000000000001",
-				},
-				(payload) => {
-					console.log("Realtime update:", payload);
-					setPhineasText(payload.new.text);
-
-					toast({
-						title: "Message updated!",
-						description: payload.new.text,
-					});
-				}
-			)
-			.subscribe();
+		init();
 
 		// Cleanup on unmount
 		return () => {
-			supabase.removeChannel(channel);
+			if (channel) supabase.removeChannel(channel);
 		};
 	}, [toast]);
 
