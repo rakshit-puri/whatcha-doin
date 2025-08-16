@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { SpeechBubble } from "./SpeechBubble";
-import phineasImg from "@/assets/phineas.png";
-import isabellaImg from "@/assets/isabella.png";
-import backyardBg from "@/assets/backyard-bg.png";
+
+const phineasImg = "/lovable-uploads/89f0c9ab-a47a-4576-b978-3aa090c36922.png";
+const isabellaImg = "/lovable-uploads/b71a0ccf-548f-426f-881f-185e76a4ee49.png";
+const backyardBg = "/lovable-uploads/370129bb-41ab-48b7-acba-9856c3bfb7ae.png";
 
 export const BackyardScene = () => {
   const [phineasText, setPhineasText] = useState("Thinking of you");
