@@ -14,24 +14,28 @@ export const BackyardScene = () => {
 	const [phineasText, setPhineasText] = useState("Thinking of you");
 	const isabellaText = "Whatcha doin'?";
 
+	// Helper: fetch current message
+	const fetchMessage = async () => {
+		const { data, error } = await supabase
+			.from("messages")
+			.select("text")
+			.eq("id", "00000000-0000-0000-0000-000000000001")
+			.single();
+
+		if (error) {
+			console.error("Error fetching message:", error);
+		} else if (data) {
+			setPhineasText(data.text);
+		}
+	};
+
 	useEffect(() => {
 		let channel: ReturnType<typeof supabase.channel>;
 
 		const init = async () => {
-			// 1. Fetch current message once
-			const { data, error } = await supabase
-				.from("messages")
-				.select("text")
-				.eq("id", "00000000-0000-0000-0000-000000000001")
-				.single();
+			await fetchMessage();
 
-			if (error) {
-				console.error("Error fetching message:", error);
-			} else if (data) {
-				setPhineasText(data.text);
-			}
-
-			// 2. Subscribe to realtime updates
+			// Subscribe to realtime updates
 			channel = supabase
 				.channel("messages-updates")
 				.on(
@@ -53,9 +57,21 @@ export const BackyardScene = () => {
 
 		init();
 
+		// Listen for tab becoming active again
+		const handleVisibility = () => {
+			if (document.visibilityState === "visible") {
+				console.log("Tab active again → refreshing message");
+				fetchMessage();
+			}
+		};
+		window.addEventListener("focus", fetchMessage);
+		document.addEventListener("visibilitychange", handleVisibility);
+
 		// Cleanup on unmount
 		return () => {
 			if (channel) supabase.removeChannel(channel);
+			window.removeEventListener("focus", fetchMessage);
+			document.removeEventListener("visibilitychange", handleVisibility);
 		};
 	}, []);
 
@@ -67,7 +83,7 @@ export const BackyardScene = () => {
 				style={{ backgroundImage: `url(${backyardBg})` }}
 			/>
 
-			{/* Sky overlay for better contrast */}
+			{/* Sky overlay */}
 			<div className="absolute inset-0 bg-gradient-to-b from-sky/20 via-transparent to-grass/10" />
 
 			{/* Main content */}
