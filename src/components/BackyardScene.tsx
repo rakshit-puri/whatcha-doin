@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { SpeechBubble } from "./SpeechBubble";
+import { useToast } from "@/hooks/use-toast";
 
 const phineasImg = "/lovable-uploads/89f0c9ab-a47a-4576-b978-3aa090c36922.png";
 const isabellaImg = "/lovable-uploads/b71a0ccf-548f-426f-881f-185e76a4ee49.png";
@@ -7,12 +8,34 @@ const backyardBg = "/lovable-uploads/370129bb-41ab-48b7-acba-9856c3bfb7ae.png";
 
 export const BackyardScene = () => {
   const [phineasText, setPhineasText] = useState("Thinking of you");
+  const { toast } = useToast();
   const isabellaText = "Whatcha doin'?";
 
-  // This would connect to your backend API when Supabase is set up
+  // Fetch current message from API
+  const fetchCurrentMessage = async () => {
+    try {
+      const response = await fetch('/functions/v1/update-message', {
+        method: 'GET'
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        if (data?.text) {
+          setPhineasText(data.text);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch message:', error);
+    }
+  };
+
   useEffect(() => {
-    // Placeholder for API connection to get updated text
-    // When Supabase is connected, this would fetch the latest message
+    fetchCurrentMessage();
+    
+    // Poll for updates every 5 seconds (will be replaced with real-time when Supabase types are ready)
+    const interval = setInterval(fetchCurrentMessage, 5000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -57,11 +80,15 @@ export const BackyardScene = () => {
         </div>
       </div>
 
-      {/* Footer with API info */}
+      {/* API Info */}
       <div className="absolute bottom-4 left-4 right-4 z-20">
-        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 mx-auto max-w-md text-center shadow-lg">
-          <p className="text-sm text-foreground/70">
-            Connect Supabase to enable POST requests from iOS Shortcuts
+        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 mx-auto max-w-lg text-center shadow-lg">
+          <p className="text-sm text-foreground/70 mb-2">
+            <strong>API Endpoint Ready!</strong>
+          </p>
+          <p className="text-xs text-foreground/60">
+            POST to: <code className="bg-gray-100 px-1 rounded">/functions/v1/update-message</code><br/>
+            Body: <code className="bg-gray-100 px-1 rounded">{`{"text": "Your message here"}`}</code>
           </p>
         </div>
       </div>
