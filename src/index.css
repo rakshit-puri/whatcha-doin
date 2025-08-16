@@ -8,35 +8,54 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Phineas and Ferb Inspired Color Palette */
+    --background: 135 60% 88%;
+    --foreground: 25 85% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 25 85% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 25 85% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 142 76% 36%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 48 100% 67%;
+    --muted-foreground: 25 85% 25%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 213 94% 68%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 45 29% 76%;
+    --input: 45 29% 76%;
+    --ring: 25 95% 53%;
 
-    --radius: 0.5rem;
+    /* Custom Design Tokens */
+    --phineas-orange: 25 95% 53%;
+    --isabella-pink: 320 89% 70%;
+    --backyard-green: 142 76% 36%;
+    --sky-blue: 213 94% 68%;
+    --fence-brown: 30 67% 44%;
+    --grass-green: 88 50% 45%;
+    
+    /* Gradients */
+    --gradient-sky: linear-gradient(180deg, hsl(213 94% 68%), hsl(213 94% 85%));
+    --gradient-grass: linear-gradient(180deg, hsl(88 50% 53%), hsl(88 50% 35%));
+    --gradient-speech: linear-gradient(135deg, hsl(0 0% 100%), hsl(48 100% 95%));
+    
+    /* Shadows and Effects */
+    --shadow-character: 0 10px 25px -5px hsl(25 85% 15% / 0.2);
+    --shadow-speech: 0 4px 20px -2px hsl(25 85% 15% / 0.1);
+    --shadow-glow: 0 0 30px hsl(48 100% 67% / 0.4);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
