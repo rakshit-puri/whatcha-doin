@@ -57,7 +57,7 @@ export const BackyardScene = () => {
 		return () => {
 			if (channel) supabase.removeChannel(channel);
 		};
-	}, [phineasText]);
+	}, []);
 
 	return (
 		<div className="min-h-screen relative overflow-hidden">
