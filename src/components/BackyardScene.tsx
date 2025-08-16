@@ -40,7 +40,6 @@ export const BackyardScene = () => {
               alt="Phineas Flynn"
               className="w-48 h-48 md:w-64 md:h-64 object-contain filter drop-shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:scale-105 transition-transform duration-300"
             />
-            <h3 className="mt-2 font-bold text-phineas text-lg">Phineas</h3>
           </div>
 
           {/* Isabella */}
@@ -53,7 +52,6 @@ export const BackyardScene = () => {
               alt="Isabella Garcia-Shapiro"
               className="w-48 h-48 md:w-64 md:h-64 object-contain filter drop-shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:scale-105 transition-transform duration-300"
             />
-            <h3 className="mt-2 font-bold text-isabella text-lg">Isabella</h3>
           </div>
 
         </div>

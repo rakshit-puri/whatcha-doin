@@ -16,10 +16,16 @@ export const SpeechBubble = ({ text, className, position = "right" }: SpeechBubb
     )}>
       <p className="text-foreground font-medium text-sm leading-relaxed">{text}</p>
       
-      {/* Speech bubble tail */}
+      {/* Speech bubble triangle tail */}
       <div className={cn(
-        "absolute w-6 h-6 bg-white rotate-45 border-l border-b border-border",
-        position === "left" ? "top-8 -right-2" : "top-8 -left-2"
+        "absolute w-0 h-0 border-l-[12px] border-r-[12px] border-t-[16px]",
+        "border-l-transparent border-r-transparent border-t-white",
+        position === "left" ? "top-8 -right-3" : "top-8 -left-3"
+      )} />
+      <div className={cn(
+        "absolute w-0 h-0 border-l-[13px] border-r-[13px] border-t-[17px]",
+        "border-l-transparent border-r-transparent border-t-border",
+        position === "left" ? "top-[30px] -right-[13px]" : "top-[30px] -left-[13px]"
       )} />
     </div>
   );
