@@ -1,73 +1,72 @@
-# Welcome to your Lovable project
+# Whatcha Doin?
 
-## Project info
+A simple, real-time status-sharing application. This project is built using a modern web stack, featuring Vite for the build tooling, React and TypeScript for the frontend, and Supabase for the backend.
 
-**URL**: https://lovable.dev/projects/3790ee37-0cc8-41fa-8616-fae52b62ca57
+## ✨ Features
 
-## How can I edit this code?
+- **Real-time Updates**: See status changes instantly thanks to Supabase's real-time capabilities.
+- **Modern UI**: Clean and responsive interface built with Tailwind CSS.
+- **Type-Safe**: Fully written in TypeScript for better developer experience and fewer bugs.
+- **Fast Development**: Vite provides a lightning-fast development server and optimized builds.
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+- **Frontend**: [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
+- **Backend**: [Supabase](https://supabase.com/) (Database, Auth, Real-time)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Utilities**:
+  - `clsx` & `tailwind-merge` for conditional class names.
+  - `tailwindcss-animate` for simple animations.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3790ee37-0cc8-41fa-8616-fae52b62ca57) and start prompting.
+## 🚀 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (v18 or higher recommended)
+- npm or another package manager (yarn, pnpm)
+- A Supabase account and project.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation & Setup
 
-Follow these steps:
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd whatcha-doin
+    ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3.  **Set up environment variables:**
 
-# Step 3: Install the necessary dependencies.
-npm i
+    Create a `.env` file in the root of the project by copying the example file:
+    ```bash
+    cp .env.example .env
+    ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+    Now, open the `.env` file and add your Supabase project URL and anon key. You can find these in your Supabase project's "API" settings.
 
-**Edit a file directly in GitHub**
+    ```env
+    VITE_SUPABASE_URL="YOUR_SUPABASE_URL"
+    VITE_SUPABASE_ANON_KEY="YOUR_SUPABASE_ANON_KEY"
+    ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-**Use GitHub Codespaces**
+    The application should now be running on `http://localhost:5173`.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📜 Available Scripts
 
-## What technologies are used for this project?
+In the project directory, you can run:
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/3790ee37-0cc8-41fa-8616-fae52b62ca57) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- `npm run dev`: Runs the app in development mode.
+- `npm run build`: Builds the app for production to the `dist` folder.
+- `npm run lint`: Lints the source code using ESLint to find and fix problems.
