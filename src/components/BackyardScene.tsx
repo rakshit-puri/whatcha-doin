@@ -50,9 +50,7 @@ export const BackyardScene = () => {
 						setPhineasText(payload.new.text ?? phineasText);
 					}
 				)
-				.subscribe((status) => {
-					console.log("Subscription status:", status);
-				});
+				.subscribe();
 		};
 
 		init();
@@ -60,7 +58,6 @@ export const BackyardScene = () => {
 		// Listen for tab becoming active again
 		const handleVisibility = () => {
 			if (document.visibilityState === "visible") {
-				console.log("Tab active again → refreshing message");
 				fetchMessage();
 			}
 		};
